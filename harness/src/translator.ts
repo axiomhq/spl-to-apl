@@ -8,7 +8,7 @@ async function loadSkillContent(skillPath: string): Promise<string> {
   return file.text();
 }
 
-const model = wrapModel(gateway("openai/gpt-4o-mini"));
+const model = wrapModel(gateway("google/gemini-2.5-flash"));
 
 export async function translate(
   testCase: TranslationCase,

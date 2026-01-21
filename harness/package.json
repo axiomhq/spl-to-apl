@@ -5,10 +5,12 @@
   "private": true,
   "scripts": {
     "start": "bun run index.ts",
-    "check": "bun run --bun tsc --noEmit"
+    "check": "bun run --bun tsc --noEmit",
+    "eval": "axiom-ai run src/spl-translation.eval.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "vitest": "^4.0.17"
   },
   "peerDependencies": {
     "typescript": "^5"
