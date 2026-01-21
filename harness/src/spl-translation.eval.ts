@@ -3,14 +3,21 @@ import { generateText } from "ai";
 import { gateway } from "@ai-sdk/gateway";
 import { wrapAISDKModel } from "@axiomhq/ai";
 import { testCases } from "./cases";
+import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const model = wrapAISDKModel(gateway("google/gemini-2.5-flash"));
 
 async function loadSkillContent(variant: "original" | "compressed"): Promise<string> {
-  const path = variant === "original" 
-    ? "../.agents/skills/spl-to-apl/SKILL.md"
-    : "../.agents/skills/spl-to-apl/SKILL.draft.md";
-  return Bun.file(path).text();
+  const relativePath = variant === "original" 
+    ? "../../.agents/skills/spl-to-apl/SKILL.md"
+    : "../../.agents/skills/spl-to-apl/SKILL.draft.md";
+  const absolutePath = resolve(__dirname, relativePath);
+  return readFile(absolutePath, "utf-8");
 }
 
 async function translateSplToApl(spl: string, skillVariant: "original" | "compressed"): Promise<string> {
