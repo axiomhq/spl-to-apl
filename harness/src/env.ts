@@ -7,9 +7,7 @@ export const env = createEnv({
     AXIOM_DATASET: z.string().min(1, "Axiom dataset name required"),
     AXIOM_URL: z.string().url().optional().default("https://api.axiom.co"),
 
-    OPENAI_API_KEY: z.string().min(1, "OpenAI API key required"),
-
-    ANTHROPIC_API_KEY: z.string().optional(),
+    AI_GATEWAY_API_KEY: z.string().min(1, "Vercel AI Gateway API key required"),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

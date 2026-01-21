@@ -1,5 +1,5 @@
 import { generateText } from "ai";
-import { openai } from "@ai-sdk/openai";
+import { gateway } from "@ai-sdk/gateway";
 import { wrapModel } from "./instrumentation";
 import type { TranslationCase, TranslationResult, SkillVariant } from "./types";
 
@@ -8,7 +8,7 @@ async function loadSkillContent(skillPath: string): Promise<string> {
   return file.text();
 }
 
-const model = wrapModel(openai("gpt-4o-mini"));
+const model = wrapModel(gateway("openai/gpt-4o-mini"));
 
 export async function translate(
   testCase: TranslationCase,
