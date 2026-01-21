@@ -1,3 +1,4 @@
+import { writeFile, mkdir } from "node:fs/promises";
 import { loadCases } from "./src/cases";
 import { runHarness, printReport } from "./src/harness";
 
@@ -22,8 +23,9 @@ async function main() {
   const report = await runHarness(cases, 1);
   printReport(report);
 
+  await mkdir("./results", { recursive: true });
   const outputPath = `./results/${report.timestamp.replace(/:/g, "-")}.json`;
-  await Bun.write(outputPath, JSON.stringify(report, null, 2));
+  await writeFile(outputPath, JSON.stringify(report, null, 2));
   console.log(`\nResults written to ${outputPath}`);
 }
 

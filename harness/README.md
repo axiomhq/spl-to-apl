@@ -1,15 +1,17 @@
 # harness
 
-To install dependencies:
+eval harness for comparing SPL-to-APL skill variants.
+
+## setup
 
 ```bash
-bun install
+pnpm install
 ```
 
-To run:
+## running evals
 
 ```bash
-bun run index.ts
+pnpm eval
 ```
 
-This project was created using `bun init` in bun v1.3.5. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+runs `axiom-ai run src/spl-translation.eval.ts` which compares the original skill against the compressed variant.

@@ -1,11 +1,11 @@
+import { readFile } from "node:fs/promises";
 import { generateText } from "ai";
 import { gateway } from "@ai-sdk/gateway";
 import { wrapModel } from "./instrumentation";
 import type { TranslationCase, TranslationResult, SkillVariant } from "./types";
 
 async function loadSkillContent(skillPath: string): Promise<string> {
-  const file = Bun.file(skillPath);
-  return file.text();
+  return readFile(skillPath, "utf-8");
 }
 
 const model = wrapModel(gateway("google/gemini-2.5-flash"));

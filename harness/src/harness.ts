@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import { encode } from "gpt-tokenizer";
 import { flushTraces } from "./instrumentation";
 import { translate } from "./translator";
@@ -13,7 +14,7 @@ import type {
 const SKILL_BASE = "../.agents/skills/spl-to-apl";
 
 async function countTokens(filePath: string): Promise<number> {
-  const content = await Bun.file(filePath).text();
+  const content = await readFile(filePath, "utf-8");
   return encode(content).length;
 }
 

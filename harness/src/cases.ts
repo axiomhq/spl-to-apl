@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import type { TranslationCase } from "./types";
 
 /**
@@ -465,6 +466,6 @@ export function loadCases(): TranslationCase[] {
 }
 
 export function loadCasesFromJson(jsonPath: string): TranslationCase[] {
-  const file = Bun.file(jsonPath);
-  return file.json() as Promise<TranslationCase[]> as unknown as TranslationCase[];
+  const content = readFileSync(jsonPath, "utf-8");
+  return JSON.parse(content) as TranslationCase[];
 }

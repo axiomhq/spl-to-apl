@@ -1,19 +1,17 @@
 {
   "name": "spl-to-apl-harness",
-  "module": "index.ts",
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "bun run index.ts",
-    "check": "bun run --bun tsc --noEmit",
+    "start": "tsx index.ts",
+    "check": "tsc --noEmit",
     "eval": "axiom-ai run src/spl-translation.eval.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5",
     "vitest": "^4.0.17"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^3.0.17",
